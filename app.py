@@ -92,11 +92,26 @@ SOURCE DOCUMENT:
 {source}
 """
 
-    response = client.models.generate_content(
-        model="gemini-3.8-flash",
-        contents=prompt,
-        config={"response_mime_type": "application/json"}
-    )
+    import time
+
+response = None
+
+for attempt in range(3):
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.8-flash",
+            contents=prompt,
+            config={"response_mime_type": "application/json"}
+        )
+        break
+
+    except Exception as e:
+        error_message = str(e)
+
+        if ("503" in error_message or "UNAVAILABLE" in error_message) and attempt < 2:
+            time.sleep(2 ** (attempt + 1))
+        else:
+            raise
 
     raw = response.text or ""
 
