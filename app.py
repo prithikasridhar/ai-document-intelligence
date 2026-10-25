@@ -203,8 +203,11 @@ sample_path = os.path.join(
     "sample_resume.txt"
 )
 
-with open(sample_path, "r", encoding="utf-8") as f:
-    sample_text = f.read()
+if os.path.exists(sample_path):
+    with open(sample_path, "r", encoding="utf-8") as f:
+        sample_text = f.read()
+else:
+    sample_text = ""
 
 
 left, right = st.columns([3, 2])
