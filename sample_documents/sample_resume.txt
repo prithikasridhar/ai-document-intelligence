@@ -1,0 +1,11 @@
+Name: Priya Kumar
+Email: priya@example.com
+
+Skills:
+Python, Java, SQL, HTML, CSS
+
+Education:
+B.Tech Computer Science
+
+Work Experience:
+Python Developer Intern at ABC Technologies.
